@@ -1,0 +1,96 @@
+import logging
+from pathlib import Path
+import re
+
+from utilities.logger import Logger
+from utilities.recording import Recording
+
+
+class RecordingsScanner(metaclass=Logger):
+    logger: logging.Logger
+
+    def fetch_recordings(self, video_sizes: dict[str, int], exclude_pattern: str = "") -> list[Recording]:
+        """
+        Lists recordings found, referenced in a given upload list.
+
+        Parameters:
+            video_sizes (dict[Path, int]): Paths included inside the upload list .json file
+            exclude_pattern (str, optional): If present in filename, file is omitted by finder
+
+        Returns:
+            list[Recording]: Recordings found, referenced in a given upload list
+        """
+        recordings = []
+        for path in video_sizes:
+            video_path = Path(path)
+            if not video_path.exists():
+                self.logger.error(f"Video in: {video_path} was not found.")
+                continue
+
+            if exclude_pattern and exclude_pattern in video_path.name:
+                self.logger.info(f"Video in: {video_path} has the forbidden pattern {exclude_pattern}")
+                continue
+
+            if "_downscaled" in video_path.name or "compressed" in video_path.name.lower():
+                self.logger.info(f"Video in: {video_path} is compressed. Skipping entry...")
+                continue
+
+            is_suffix_correct = video_path.suffix in {".raw", ".mp4"}
+            is_pattern_correct = re.search(r'.*c1_(\d+1|1)\.mf4', video_path.name) is not None
+            if (video_path.is_file() and
+                    (is_suffix_correct or is_pattern_correct)):
+                if " " in video_path.stem:
+                    video_path = video_path.rename(video_path.with_stem(video_path.stem.replace(" ", "_")))  # ToDo [GGQ-1241]
+
+                name = video_path.stem
+                suffixes = ("_c1_001", "_c1_01", "_c1_1")
+                for suffix in suffixes:
+                    if name.endswith(suffix):
+                      name = name[:-len(suffix)]
+                      break
+
+                recording_size = video_sizes[path]
+                self.logger.info(f"Recording {video_path.name} of size {recording_size} bytes located")
+                recording = Recording(video_path, video_path.name, recording_size)
+                recordings.append(recording)
+        return recordings
+
+    def find_recordings(self, root_directory: Path, exclude_pattern: str = "") -> list[Recording]:
+        """
+        Lists recordings in given directory.
+
+
+        Parameters:
+            root_directory (Path): Path where you want to search for recordings.
+            exclude_pattern (str): If present in filename, file is omitted by finder.
+
+        Returns:
+            list[Recording]: List of paths to raw movie files in Upload directory.
+        """
+        recordings: list[Recording] = []
+        # if suffix in {".raw", ".mp4", ".mf4"}:  # ToDo [GGQ-1251]
+        if root_directory.exists():
+            self.logger.info(f"Start searching for recordings in {root_directory}.")
+            for path in root_directory.rglob("*"):
+                if exclude_pattern and exclude_pattern in path.name or "_downscaled" in path.name or "compressed" in path.name.lower():
+                    continue
+
+                possible_mf4_suffixes = ("_c1_001.mf4", "_c1_01.mf4", "_c1_1.mf4")
+                if path.is_file() and (path.suffix in {".raw", ".mp4"} or path.name.endswith(possible_mf4_suffixes)):
+                    if " " in path.stem:
+                        path = path.rename(path.with_stem(path.stem.replace(" ", "_")))  # ToDo [GGQ-1241]
+
+                    name = path.stem
+                    possible_mf4_stem_suffixes = ("_c1_001", "_c1_01", "_c1_1")
+                    for suffix in possible_mf4_suffixes:
+                        if path.name.endswith(suffix):
+                            name = path.name[:-len(suffix)]
+                            break
+
+                    self.logger.info(f"Found recording {name}.")
+                    size: int = path.stat().st_size
+                    recording = Recording(path, name, size)
+                    recordings.append(recording)
+        else:
+            self.logger.error(f"Root directory {root_directory} does not exist.")
+        return recordings
