@@ -1,0 +1,36 @@
+SFTPConnection - INFO    - SFTP connection created successfully.
+conversion_script - INFO    - Converting TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4.
+DatabaseConnection - INFO    - Property 'status' for name=TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4 has been successfully changed to value: CONVERSION_IN_PROGRESS.
+ConverterMf4Xylon - INFO    - Config seems to be correct.
+Config - INFO    - Config file found: /net/8k3/e0fs01/users/sid_gpo_dmvv/workspaces/ps_workspace/csfw-tools/hpcc/config/marking_config.yaml
+ConverterMf4Xylon - INFO    - Config seems to be correct.
+ConverterMf4Xylon - INFO    - Processing TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4.
+ConverterMf4Xylon - INFO    - source_mf4_path=PosixPath('/net/8k3/e0fs01/users/sid_gpo_dmvv/workspaces/ps_workspace/upload/TEST_VH08_S202_SW50_HW30_20241219000000#oc19155002q1a81e2/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4').
+ConverterMf4Xylon - INFO    - secure_destination_directory_path=PosixPath('/net/8k3/e0fs01/irods/PLKRA-PROJECTS/GPO-CSW-VAL/5-Ftp/log_storage/upload/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4').
+ConverterMf4Xylon - INFO    - unsecure_destination_directory_path=PosixPath('/net/8k3/e0fs01/irods/PLKRA-PROJECTS/GPO-COCKPIT/5-Ftp/log_storage/upload/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4').
+ConverterMf4Xylon - INFO    - destination_mp4_path=PosixPath('/net/8k3/e0fs01/irods/PLKRA-PROJECTS/GPO-CSW-VAL/5-Ftp/log_storage/upload/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4.mp4').
+ConverterMf4Xylon - INFO    - marked_full_scale_mp4_path=PosixPath('/net/8k3/e0fs01/irods/PLKRA-PROJECTS/GPO-COCKPIT/5-Ftp/log_storage/upload/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4.mp4').
+ConverterMf4Xylon - INFO    - marked_downscaled_mp4_path=PosixPath('/net/8k3/e0fs01/irods/PLKRA-PROJECTS/GPO-COCKPIT/5-Ftp/log_storage/upload/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4_downscaled.mp4').
+ConverterMf4Xylon - INFO    - self.config.APPROVED_DIRECTORY_RELATIVE=PosixPath('5-Ftp/log_storage').
+ConverterMf4Xylon - INFO    - self.config.SECURED_PROJECT_ROOT=PosixPath('/net/8k3/e0fs01/irods/PLKRA-PROJECTS/GPO-CSW-VAL').
+ConverterMf4Xylon - INFO    - recording.path=PosixPath('/net/8k3/e0fs01/users/sid_gpo_dmvv/workspaces/ps_workspace/upload/TEST_VH08_S202_SW50_HW30_20241219000000#oc19155002q1a81e2/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4').
+ConverterMf4Xylon - INFO    - recording.name='TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4'.
+ConverterMf4Xylon - INFO    - Collection backup path: /net/8k3/e0fs01/users/sid_gpo_dmvv/workspaces/ps_workspace/workspaces-file/Raw_data_backup/upload_backup.
+ConverterMf4Xylon - INFO    - The copy process was completed successfully.
+ConverterMf4Xylon - INFO    - Starting to convert video from mf4 to mp4
+
+conversion_script - ERROR   - Error during conversion:ffprobe error (see stderr output for detail).
+conversion_script - ERROR   - b'ffprobe version 4.4.1-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2007-2021 the FFmpeg developers\n  built with gcc 8 (Debian 8.3.0-6)\n  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gmp --enable-libgme --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libdav1d --enable-libxvid --enable-libzvbi --enable-libzimg\n  libavutil      56. 70.100 / 56. 70.100\n  libavcodec     58.134.100 / 58.134.100\n  libavformat    58. 76.100 / 58. 76.100\n  libavdevice    58. 13.100 / 58. 13.100\n  libavfilter     7.110.100 /  7.110.100\n  libswscale      5.  9.100 /  5.  9.100\n  libswresample   3.  9.100 /  3.  9.100\n  libpostproc    55.  9.100 / 55.  9.100\n/net/8k3/e0fs01/irods/PLKRA-PROJECTS/GPO-CSW-VAL/5-Ftp/log_storage/upload/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4/TEST_VH08_S202_SW50_HW30_20241219000000_c1_01.mf4.mp4: No such file or directory\n'
+conversion_script - ERROR   - Traceback (most recent call last):
+  File "/net/8k3/e0fs01/users/sid_gpo_dmvv/workspaces/ps_workspace/csfw-tools/hpcc/python/scripts/marking_tool/convert.py", line 87, in <module>
+    metadata = converter.process(
+               ^^^^^^^^^^^^^^^^^^
+  File "/net/8k3/e0fs01/users/sid_gpo_dmvv/workspaces/ps_workspace/csfw-tools/hpcc/python/scripts/marking_tool/utilities/converter_mf4.py", line 71, in process
+    self._extract_test_commander_csv(self.move_raw_data_file_path, destination_mp4_path)
+  File "/net/8k3/e0fs01/users/sid_gpo_dmvv/workspaces/ps_workspace/csfw-tools/hpcc/python/scripts/marking_tool/utilities/converter_mf4.py", line 142, in _extract_test_commander_csv
+    metadata = ffmpeg.probe(mp4_path)["streams"][0]
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/local/tmp.sid_gpo_dmvv.8cKLat/hpc_venv/lib/python3.12/site-packages/ffmpeg/_probe.py", line 23, in probe
+    raise Error('ffprobe', out, err)
+ffmpeg._run.Error: ffprobe error (see stderr output for detail)
+
